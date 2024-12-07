@@ -13,8 +13,8 @@ export function postUsers(req,res){
         }
     ).catch(
         ()=>{
-            res.json({
-                message : "Error creating user"
+            res.status(500).json({
+                message : "Error saving user to database"
             })
         }
     )
