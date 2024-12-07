@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import userRouter from './routes/usersRoute.js';
 import mongoose from 'mongoose';
+import galleryItemRouter from './routes/galleryItemRoute.js';
 
 const app = express();
 
@@ -20,6 +21,7 @@ mongoose.connect(database).then(
 )
 
 app.use("/api/users", userRouter)
+app.use("/api/galleryItems", galleryItemRouter)
 
 app.listen(4200,(req,res) =>{
     console.log("Server is running on http://localhost:4200/");
