@@ -30,7 +30,15 @@ export function loginUser(req,res){
                     message : "Invalid email or password"
                 })
             }else{
-                const token = jwt.sign({email : response.email}, "secretKey");
+                const payload = {
+                    id : response._id,
+                    email : response.email,
+                    password : response.password,
+                    type : response.type,
+                    firstName : response.firstName,
+                    lastName : response.lastName,
+                };
+                const token = jwt.sign(payload, "secretKey");
                 res.json({
                     message : "User logged in successfully",
                     token : token
