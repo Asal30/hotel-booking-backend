@@ -1,4 +1,5 @@
 import User from '../models/userModel.js'
+import jwt from 'jsonwebtoken'
 
 export function registerUser(req,res){
 
@@ -29,8 +30,10 @@ export function loginUser(req,res){
                     message : "Invalid email or password"
                 })
             }else{
+                const token = jwt.sign({email : response.email}, "secretKey");
                 res.json({
-                    message : "User logged in successfully"
+                    message : "User logged in successfully",
+                    token : token
                 })
             }
         }
