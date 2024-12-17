@@ -1,6 +1,6 @@
 import User from '../models/userModel.js'
 
-export function postUsers(req,res){
+export function registerUser(req,res){
 
     const user = req.body
 
@@ -8,13 +8,13 @@ export function postUsers(req,res){
     newUser.save().then(
         ()=>{
             res.json({
-                message : "User created successfully"
+                message : "User registered successfully"
             })
         }
     ).catch(
         ()=>{
             res.status(500).json({
-                message : "Error saving user to database"
+                message : "Error creating user account"
             })
         }
     )
@@ -26,7 +26,7 @@ export function loginUser(req,res){
         (response)=>{
             if(response == null){
                 res.status(404).json({
-                    message : "User not found"
+                    message : "Invalid email or password"
                 })
             }else{
                 res.json({
