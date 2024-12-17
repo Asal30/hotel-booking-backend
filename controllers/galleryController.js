@@ -10,13 +10,15 @@ export function postGalleryItems(req,res){
         res.status(401).json({
             message : "Unauthorized"
         })
+        return
     }
     if(user.type != "admin"){
         res.status(401).json({
             message : "Only admins can add gallery items"
         })
+        return
     }
-    const galleryItem = req.body;
+    const galleryItem = req.body.item;
     const newGalleryItem = new GalleryItem(galleryItem);
     newGalleryItem.save().then(
         () => {
