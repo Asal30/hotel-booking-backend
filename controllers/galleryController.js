@@ -3,12 +3,12 @@ import GalleryItem from "../models/galleryItemModel.js";
 
 export function postGalleryItems(req,res){
 
-    const user = req.body.user;
+    const user = req.user;
     console.log(user);
 
     if(user == null){
         res.status(401).json({
-            message : "Unauthorized"
+            message : "Please login to add gallery items"
         })
         return
     }
@@ -18,7 +18,7 @@ export function postGalleryItems(req,res){
         })
         return
     }
-    const galleryItem = req.body.item;
+    const galleryItem = req.body;
     const newGalleryItem = new GalleryItem(galleryItem);
     newGalleryItem.save().then(
         () => {
