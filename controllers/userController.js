@@ -49,8 +49,12 @@ export async function loginUser(req, res) {
             "secretKey"
         );
 
-        res.json({ message: "User logged in successfully", token });
+        res.json(
+            { message: "User logged in successfully", token }
+        );
     } catch (err) {
-        res.status(500).json({ message: "Server error", error: err.message });
+        res.status(500).json(
+            { message: "Server error", error: err.message }
+        );
     }
 }

@@ -1,9 +1,9 @@
 import express from 'express';
-import { postGalleryItems, getGalleryItems } from '../controllers/galleryController.js';
+import { createGalleryItems, getGalleryItems } from '../controllers/galleryController.js';
 
 const galleryItemRouter = express.Router();
 
-galleryItemRouter.post("/", postGalleryItems);
+galleryItemRouter.post("/", createGalleryItems);
 
 galleryItemRouter.get("/", getGalleryItems);
 

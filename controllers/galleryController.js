@@ -1,7 +1,7 @@
 import GalleryItem from "../models/galleryItemModel.js";
 
 
-export function postGalleryItems(req,res){
+export function createGalleryItems(req,res){
 
     const user = req.user;
     console.log(user);
