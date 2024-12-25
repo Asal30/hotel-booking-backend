@@ -4,6 +4,7 @@ import userRouter from './routes/usersRoute.js';
 import mongoose from 'mongoose';
 import galleryItemRouter from './routes/galleryItemRoute.js';
 import jwt from 'jsonwebtoken';
+import categoryItemRouter from './routes/categoryItemsRoute.js';
 
 const app = express();
 
@@ -43,6 +44,7 @@ mongoose.connect(database).then(
 
 app.use("/api/users", userRouter)
 app.use("/api/galleryItems", galleryItemRouter)
+app.use("/api/categoryItems", categoryItemRouter)
 
 app.listen(4200,(req,res) =>{
     console.log("Server is running on http://localhost:4200/");
