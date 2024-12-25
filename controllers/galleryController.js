@@ -20,11 +20,17 @@ export async function createGalleryItems(req, res) {
         const newGalleryItem = new GalleryItem(req.body);
         await newGalleryItem.save();
         res.json(
-            { message: "Gallery item saved to database successfully" }
+            { 
+                message: "Gallery item saved to database successfully",
+                data : newGalleryItem
+            }
         );
     } catch (err) {
         res.status(500).json(
-            { message: "Error saving gallery item to database", error: err.message }
+            { 
+                message: "Error saving gallery item to database",
+                error: err.message
+            }
         );
     }
 }
@@ -37,7 +43,10 @@ export async function getGalleryItems(req, res) {
         );
     } catch (err) {
         res.status(500).json(
-            { message: "Error finding gallery items list", error: err.message }
+            { 
+                message: "Error finding gallery items list",
+                error: err.message
+            }
         );
     }
 }
