@@ -7,23 +7,23 @@ const categoryItemModel = mongoose.Schema(
             required : true,
             unique : true
         },
-        image : {
-            type : String,
+        price : {
+            type : Number,
             required : true
         },
         description : {
             type : String,
             required : true
         },
-        price : {
-            type : Number,
-            required : true
-        },
         features : [
             {
                 type : String
             }
-        ]
+        ],
+        image : {
+            type : String,
+            required : true
+        }
     }
 )
 
