@@ -2,6 +2,19 @@ import CategoryItem from "../models/categoryModel.js";
 
 
 export async function addCategoryItem(req, res) {
+    const user = req.user;
+
+    if (!user) {
+        return res.status(401).json(
+            { message: "Please login to add category items" }
+        );
+    }
+
+    if (user.type !== "admin") {
+        return res.status(403).json(
+            { message: "Only admins can add category items" }
+        );
+    }
     try {
         const newCategoryItem = new CategoryItem(req.body);
         await newCategoryItem.save();
