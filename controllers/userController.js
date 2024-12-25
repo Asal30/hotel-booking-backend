@@ -1,6 +1,9 @@
 import User from '../models/userModel.js'
 import jwt from 'jsonwebtoken'
 import argon from 'argon2'
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 export async function registerUser(req, res) {
     try {
@@ -46,7 +49,7 @@ export async function loginUser(req, res) {
                 firstName: user.firstName,
                 lastName: user.lastName,
             },
-            "secretKey"
+            process.env.JWT_KEY
         );
 
         res.json(

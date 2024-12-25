@@ -5,19 +5,22 @@ import mongoose from 'mongoose';
 import galleryItemRouter from './routes/galleryItemRoute.js';
 import jwt from 'jsonwebtoken';
 import categoryItemRouter from './routes/categoryItemsRoute.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 
 app.use(bodyParser.json());
 
-const database = "mongodb+srv://Asal:1234@cluster0.be57l.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const database = process.env.DATABASE_URL;
 
 app.use((req, res, next) => {
 
     const token = req.header("Authorization")?.replace("Bearer ", "");
 
     if (token != null) {
-        jwt.verify(token, "secretKey", (err, decded) => {
+        jwt.verify(token, process.env.JWT_KEY, (err, decded) => {
             if(decded != null){
                 req.user = decded;
                 next();
