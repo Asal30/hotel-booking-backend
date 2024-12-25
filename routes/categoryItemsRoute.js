@@ -1,9 +1,17 @@
 import express from 'express';
-import { addCategoryItem, getCategoryItems } from '../controllers/categoryController.js';
+import { addCategoryItem, deleteCategoryItem, getCategoryItemByName, getCategoryItemByPrice, getCategoryItems } from '../controllers/categoryController.js';
 
 const categoryItemRouter = express.Router();
 
-categoryItemRouter.post("/", addCategoryItem);
+//GETS
 categoryItemRouter.get("/", getCategoryItems);
+categoryItemRouter.get("/searchbyprice/:price", getCategoryItemByPrice);
+categoryItemRouter.get("/:name", getCategoryItemByName);
+
+//POSTS
+categoryItemRouter.post("/", addCategoryItem);
+
+//DELETES
+categoryItemRouter.delete("/:name", deleteCategoryItem);
 
 export default categoryItemRouter;
