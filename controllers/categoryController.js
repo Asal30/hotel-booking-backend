@@ -14,3 +14,16 @@ export async function addCategoryItem(req, res) {
         );
     }
 }
+
+export async function getCategoryItems(req, res) {
+    try {
+        const categoryItemsList = await CategoryItem.find({});
+        res.json(
+            { list: categoryItemsList }
+        );
+    } catch (err) {
+        res.status(500).json(
+            { message: "Error finding category items list", error: err.message }
+        );
+    }
+}
