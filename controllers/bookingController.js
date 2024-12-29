@@ -36,3 +36,21 @@ export async function createBooking(req, res) {
         res.status(500).json({ message: "Error creating booking", error: err.message });
     }
 }
+
+export async function deleteBooking(req, res) {
+    try {
+        const deletedBooking = await Booking.findOneAndDelete({ bookingId: req.params.bookingId });
+        res.json(
+            {
+                message: "Booking No: " + deletedBooking.bookingId + " deleted successfully"
+            }
+        )
+    } catch (err) {
+        res.status(500).json(
+            { 
+                message: "Error founding booking by booking No: " + req.params.bookingId + ". Check the booking ID and try again.",
+                error: err.message
+            }
+        );
+    }
+}

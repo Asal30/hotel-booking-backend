@@ -1,11 +1,13 @@
 import express from 'express';
-import { createBooking, getBookings } from '../controllers/bookingController.js';
+import { createBooking, deleteBooking, getBookings } from '../controllers/bookingController.js';
 import { validateCustomer } from '../utilities/userValidation.js';
 
 const bookingRouter = express.Router();
 
+bookingRouter.get("/", getBookings);
+
 bookingRouter.post("/", validateCustomer, createBooking);
 
-bookingRouter.get("/", getBookings);
+bookingRouter.delete("/:bookingId", validateCustomer, deleteBooking);
 
 export default bookingRouter;
