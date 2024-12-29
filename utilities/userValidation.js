@@ -24,7 +24,7 @@ export function validateCustomer(req, res, next) {
         );
     }
 
-    if (user.type !== "customer") {
+    if (user.type !== "customer" && user.type !== "admin") {
         return res.status(403).json(
             { message: "Only customers are authorized to perform this action" }
         );
