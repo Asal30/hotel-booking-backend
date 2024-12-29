@@ -5,6 +5,19 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
+export async function getAllUsers(req, res) {
+    try {
+        const users = await User.find({});
+        res.json(
+            { list: users }
+        );
+    } catch (err) {
+        res.status(500).json(
+            { message: "Error finding users", error: err.message }
+        );
+    }
+}
+
 export async function registerUser(req, res) {
     try {
         const user = req.body;
