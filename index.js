@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken';
 import categoryItemRouter from './routes/categoryItemsRoute.js';
 import dotenv from 'dotenv';
 import roomRouter from './routes/roomRoute.js';
+import bookingRouter from './routes/bookingRoute.js';
 
 dotenv.config();
 
@@ -50,6 +51,7 @@ app.use("/api/users", userRouter)
 app.use("/api/galleryItems", galleryItemRouter)
 app.use("/api/categoryItems", categoryItemRouter)
 app.use("/api/rooms", roomRouter)
+app.use("/api/bookings", bookingRouter)
 
 app.listen(4200,(req,res) =>{
     console.log("Server is running on http://localhost:4200/");
