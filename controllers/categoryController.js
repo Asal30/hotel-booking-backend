@@ -92,7 +92,7 @@ export async function deleteCategoryItem(req, res) {
     } catch (err) {
         res.status(500).json(
             {
-                message: "Error deleting category item",
+                message: "Error founding category item as '" + req.params.name + "'. Check the category item and try again",
                 error: err.message
             }
         );
@@ -112,7 +112,7 @@ export async function updateCategoryItem(req, res) {
     } catch (err) {
         res.status(500).json(
             {
-                message: "Error updating category item",
+                message: "Error founding category item as '" + req.params.name + "'. Check the category item and try again.",
                 error: err.message
             }
         );
