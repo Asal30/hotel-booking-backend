@@ -1,39 +1,6 @@
 import CategoryItem from "../models/categoryModel.js";
 
-
-export async function addCategoryItem(req, res) {
-    const user = req.user;
-
-    if (!user) {
-        return res.status(401).json(
-            { message: "Please login to add category items" }
-        );
-    }
-
-    if (user.type !== "admin") {
-        return res.status(403).json(
-            { message: "Only admins can add category items" }
-        );
-    }
-    try {
-        const newCategoryItem = new CategoryItem(req.body);
-        await newCategoryItem.save();
-        res.json(
-            { 
-                message: "Category item saved to database successfully",
-                data : newCategoryItem
-            }
-        );
-    } catch (err) {
-        res.status(500).json(
-            { 
-                message: "Error saving category item to database",
-                error: err.message
-            }
-        );
-    }
-}
-
+//GETS
 export async function getCategoryItems(req, res) {
     try {
         const categoryItemsList = await CategoryItem.find({});
@@ -44,38 +11,6 @@ export async function getCategoryItems(req, res) {
         res.status(500).json(
             { 
                 message: "Error finding category items list",
-                error: err.message
-            }
-        );
-    }
-}
-
-export async function deleteCategoryItem(req, res) {
-    const user = req.user;
-
-    if (!user) {
-        return res.status(401).json(
-            { message: "Please login to delete category items" }
-        );
-    }
-
-    if (user.type !== "admin") {
-        return res.status(403).json(
-            { message: "Only admins can delete category items" }
-        );
-    }
-
-    try {
-        const deletedItem =await CategoryItem.findOneAndDelete({ name: req.params.name });
-        res.json(
-            {
-                message: "Category item '" + deletedItem.name + "' deleted successfully"
-            }
-        )
-    } catch (err) {
-        res.status(500).json(
-            {
-                message: "Error deleting category item",
                 error: err.message
             }
         );
@@ -116,6 +51,66 @@ export async function getCategoryItemByPrice(req, res) {
         res.status(500).json(
             { 
                 message: "Error finding category item by price",
+                error: err.message
+            }
+        );
+    }
+}
+
+//POSTS
+export async function addCategoryItem(req, res) {
+    try {
+        const newCategoryItem = new CategoryItem(req.body);
+        await newCategoryItem.save();
+        res.json(
+            { 
+                message: "Category item saved to database successfully",
+                data : newCategoryItem
+            }
+        );
+    } catch (err) {
+        res.status(500).json(
+            { 
+                message: "Error saving category item to database",
+                error: err.message
+            }
+        );
+    }
+}
+
+//DELETES
+export async function deleteCategoryItem(req, res) {
+    try {
+        const deletedItem =await CategoryItem.findOneAndDelete({ name: req.params.name });
+        res.json(
+            {
+                message: "Category item '" + deletedItem.name + "' deleted successfully"
+            }
+        )
+    } catch (err) {
+        res.status(500).json(
+            {
+                message: "Error deleting category item",
+                error: err.message
+            }
+        );
+    }
+}
+
+//UPDATES
+export async function updateCategoryItem(req, res) {
+    try {
+        const updatedItem = await CategoryItem.findOneAndUpdate({ name: req.params.name }, req.body, { new: true });
+        res.json(
+            {
+                message: "Category item '" + updatedItem.name + "' updated successfully",
+                data : updatedItem
+            }
+        )
+    } catch (err) {
+        res.status(500).json(
+            {
+                message: "Error updating category item",
                 error: err.message
             }
         );
