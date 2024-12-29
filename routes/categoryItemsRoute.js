@@ -1,5 +1,6 @@
 import express from 'express';
-import { addCategoryItem, deleteCategoryItem, getCategoryItemByName, getCategoryItemByPrice, getCategoryItems } from '../controllers/categoryController.js';
+import { addCategoryItem, deleteCategoryItem, getCategoryItemByName, getCategoryItemByPrice, getCategoryItems, updateCategoryItem } from '../controllers/categoryController.js';
+import { validateAdmin } from '../controllers/adminValidationController.js';
 
 const categoryItemRouter = express.Router();
 
@@ -9,9 +10,12 @@ categoryItemRouter.get("/searchbyprice/:price", getCategoryItemByPrice);
 categoryItemRouter.get("/:name", getCategoryItemByName);
 
 //POSTS
-categoryItemRouter.post("/", addCategoryItem);
+categoryItemRouter.post("/", validateAdmin, addCategoryItem);
+
+//UPDATES
+categoryItemRouter.put("/:name", validateAdmin, updateCategoryItem);
 
 //DELETES
-categoryItemRouter.delete("/:name", deleteCategoryItem);
+categoryItemRouter.delete("/:name", validateAdmin, deleteCategoryItem);
 
 export default categoryItemRouter;

@@ -2,20 +2,6 @@ import GalleryItem from "../models/galleryItemModel.js";
 
 
 export async function createGalleryItems(req, res) {
-    const user = req.user;
-
-    if (!user) {
-        return res.status(401).json(
-            { message: "Please login to add gallery items" }
-        );
-    }
-
-    if (user.type !== "admin") {
-        return res.status(403).json(
-            { message: "Only admins can add gallery items" }
-        );
-    }
-
     try {
         const newGalleryItem = new GalleryItem(req.body);
         await newGalleryItem.save();
