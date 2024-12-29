@@ -16,13 +16,14 @@ export async function getCategoryItems(req, res) {
         );
     }
 }
-
 export async function getCategoryItemByName(req, res) {
     try {
         const categoryItem = await CategoryItem.findOne({ name: req.params.name });
         if (!categoryItem) {
             return res.status(404).json(
-                { message: "Category item '" + req.params.name + "' not found" }
+                { 
+                    message: "No category items found as '" + req.params.name + "', Please check the category name and try again"
+                }
             );
         } else {
             res.json({ data : categoryItem});
@@ -36,13 +37,14 @@ export async function getCategoryItemByName(req, res) {
         );
     }
 }
-
 export async function getCategoryItemByPrice(req, res) {
     try {
         const categoryItem = await CategoryItem.findOne({ price: req.params.price });
         if (!categoryItem) {
             return res.status(404).json(
-                { message: "Category item with price '" + req.params.price + "' not found" }
+                { 
+                    message: "No category items with '$" + req.params.price + "' found, Please check the price and try again"
+                }
             );
         } else {
             res.json({ data : categoryItem});

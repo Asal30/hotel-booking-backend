@@ -6,6 +6,7 @@ import galleryItemRouter from './routes/galleryItemRoute.js';
 import jwt from 'jsonwebtoken';
 import categoryItemRouter from './routes/categoryItemsRoute.js';
 import dotenv from 'dotenv';
+import roomRouter from './routes/roomRoute.js';
 
 dotenv.config();
 
@@ -48,6 +49,7 @@ mongoose.connect(database).then(
 app.use("/api/users", userRouter)
 app.use("/api/galleryItems", galleryItemRouter)
 app.use("/api/categoryItems", categoryItemRouter)
+app.use("/api/rooms", roomRouter)
 
 app.listen(4200,(req,res) =>{
     console.log("Server is running on http://localhost:4200/");
