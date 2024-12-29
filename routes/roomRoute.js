@@ -1,6 +1,6 @@
 import express from 'express';
 import { saveRoom, getRooms, updateRoom, deleteRoom, getRoomById } from '../controllers/roomController.js';
-import { validateAdmin } from '../utilities/adminValidation.js';
+import { validateAdmin } from '../utilities/userValidation.js';
 
 const roomRouter = express.Router();
 

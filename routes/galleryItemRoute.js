@@ -1,6 +1,6 @@
 import express from 'express';
 import { createGalleryItems, getGalleryItems } from '../controllers/galleryController.js';
-import { validateAdmin } from '../utilities/adminValidation.js';
+import { validateAdmin } from '../utilities/userValidation.js';
 
 const galleryItemRouter = express.Router();
 
