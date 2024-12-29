@@ -1,6 +1,6 @@
 import express from 'express';
 import { addCategoryItem, deleteCategoryItem, getCategoryItemByName, getCategoryItemByPrice, getCategoryItems, updateCategoryItem } from '../controllers/categoryController.js';
-import { validateAdmin } from '../controllers/adminValidationController.js';
+import { validateAdmin } from '../utilities/adminValidation.js';
 
 const categoryItemRouter = express.Router();
 
